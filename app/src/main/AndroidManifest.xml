@@ -34,8 +34,9 @@
         </activity>
         <activity android:name="com.example.z1229.activity.SmsActivity" />
         <activity android:name="com.example.z1229.activity.ResetpswActivity" />
-        <activity android:name="com.example.z1229.activity.ResetSucceed" />
         <activity android:name="com.example.z1229.activity.MainActivity"></activity>
+        <service android:name="com.example.z1229.service.SocketService" ></service>
+        <receiver android:name="com.example.z1229.receiver.SocketReceiver"></receiver>
     </application>
 
 </manifest>

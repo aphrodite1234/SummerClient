@@ -19,22 +19,22 @@ public class SharedHelper {
 
 
     //定义一个保存数据的方法
-    public void save(String username, String passwd) {
+    public void saveuser(String username, String passwd) {//保存用户名密码、登录状态
         SharedPreferences sp = mContext.getSharedPreferences("mysp", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("username", username);
-        editor.putString("passwd", passwd);
+        editor.putString("password", passwd);
         editor.putString("islogin","true");
         editor.commit();
-        Toast.makeText(mContext, "信息已写入SharedPreference中", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "用户名、密码已保存", Toast.LENGTH_SHORT).show();
     }
 
     //定义一个读取SP文件的方法
-    public Map<String, String> read() {
+    public Map<String, String> readuser() {//读取用户名密码
         Map<String, String> data = new HashMap<String, String>();
         SharedPreferences sp = mContext.getSharedPreferences("mysp", Context.MODE_PRIVATE);
         data.put("username", sp.getString("username", ""));
-        data.put("passwd", sp.getString("passwd", ""));
+        data.put("password", sp.getString("passwd", ""));
         data.put("islogin",sp.getString("islogin",""));
         return data;
     }
