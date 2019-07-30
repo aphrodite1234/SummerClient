@@ -9,14 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.z1229.base.SharedHelper;
 import com.example.z1229.bean.Message;
 import com.example.z1229.bean.UserBean;
 import com.example.z1229.service.SocketService;
 import com.example.z1229.summerclient.R;
+import com.example.z1229.utils.SPUtils;
 import com.google.gson.Gson;
-
-import java.util.Map;
 
 /**
  * Created by MaiBenBen on 2019/4/7.
@@ -30,7 +28,6 @@ public class LoadActivity extends BaseActivity {
     private EditText mEditText01=null;
     private EditText mEditText02=null;
     private ImageView image=null;
-    private SharedHelper sharedHelper;
     private String islogin;
     Gson gson = new Gson();
     boolean visible=false;
@@ -54,7 +51,6 @@ public class LoadActivity extends BaseActivity {
         final Intent intent = new Intent(this,SocketService.class);
         startService(intent);
 
-        sharedHelper = new SharedHelper(this);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,14 +102,19 @@ public class LoadActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Map<String ,String > data = sharedHelper.readuser();
-        mEditText01.setText(data.get("username"));
-        mEditText02.setText(data.get("password"));
-        islogin=data.get("islogin");
-        if(islogin.equals("true")){
-            Intent intent = new Intent(LoadActivity.this,MainActivity.class);
-            startActivity(intent);
-            finish();
+        if(SPUtils.contains(this,"phone")){
+            mEditText01.setText(SPUtils.get(this,"phone"));
+        }
+        if(SPUtils.contains(this,"phone")) {
+            mEditText02.setText(SPUtils.get(this, "password"));
+        }
+        if (SPUtils.contains(this,"islogin")){
+            islogin=SPUtils.get(this,"islogin");
+            if(islogin.equals("true")){
+                Intent intent = new Intent(LoadActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
@@ -121,7 +122,9 @@ public class LoadActivity extends BaseActivity {
     protected void doAction(String content) {
         Message message = gson.fromJson(content,Message.class);
         if(message.getType().equals("登录")&&message.getContent().equals("true")){
-            sharedHelper.saveuser(mEditText01.getText().toString(),mEditText02.getText().toString());
+            SPUtils.put(this,"phone",mEditText01.getText().toString());
+            SPUtils.put(this,"password",mEditText02.getText().toString());
+            SPUtils.put(this,"islogin","true");
             Intent intent = new Intent(LoadActivity.this,MainActivity.class);
             startActivity(intent);
             finish();
