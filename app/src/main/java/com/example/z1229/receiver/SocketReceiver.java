@@ -13,9 +13,17 @@ public class SocketReceiver extends BroadcastReceiver {
     private Gson gson = new Gson();
     private TextView textView;
     ImageView imageView;
+    public static final String ACTION_SOCKET = "com.example.z1229.receiver.SocketReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        String action = intent.getAction();
+        if (action.equals(ACTION_SOCKET)) {
+            doActionSocket(intent.getStringExtra("text"));
+        }
+    }
+
+    public void doActionSocket(String string){
 
     }
 }

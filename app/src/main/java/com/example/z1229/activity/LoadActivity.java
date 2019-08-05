@@ -10,8 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.z1229.bean.Message;
-import com.example.z1229.bean.UserBean;
-import com.example.z1229.service.SocketService;
 import com.example.z1229.summerclient.R;
 import com.example.z1229.utils.SPUtils;
 import com.google.gson.Gson;
@@ -31,6 +29,7 @@ public class LoadActivity extends BaseActivity {
     private String islogin;
     Gson gson = new Gson();
     boolean visible=false;
+    private Intent service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +47,8 @@ public class LoadActivity extends BaseActivity {
 //        DBOpenHelper dbOpenHelper=new DBOpenHelper(LoadActivity.this);
 //        final SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
 
-        final Intent intent = new Intent(this,SocketService.class);
-        startService(intent);
-
+//        service = new Intent(this,SocketService.class);
+//        startService(service);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,15 +66,22 @@ public class LoadActivity extends BaseActivity {
         mButton01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {//登录
-                UserBean userBean = new UserBean();
-                userBean.setType("登录");
-                userBean.setPhonenum(Long.valueOf(mEditText01.getText().toString().trim()));
-                userBean.setPassWord(mEditText02.getText().toString().trim());
-                Message message = new Message("UserBean",gson.toJson(userBean));
-
-                Intent intent = new Intent(LoadActivity.this,SocketService.class);
-                intent.putExtra("message",gson.toJson(message));
-                startService(intent);
+//                String phone = mEditText01.getText().toString().trim();
+//                String password = mEditText02.getText().toString().trim();
+//                UserBean userBean = new UserBean();
+//                if(TextUtils.isEmpty(phone)){
+//                    Toast.makeText(LoadActivity.this,"请输入手机号",Toast.LENGTH_SHORT).show();
+//                }else if(TextUtils.isEmpty(password)){
+//                    Toast.makeText(LoadActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
+//                }else {
+//                    userBean.setType("登录");
+//                    userBean.setPhonenum(phone);
+//                    userBean.setPassWord(password);
+//                    Message message = new Message("UserBean",gson.toJson(userBean));
+//                    service.putExtra("message",gson.toJson(message));
+//                    startService(service);
+//                }
+                startActivity(new Intent(LoadActivity.this,MainActivity.class));
             }
         });
 

@@ -97,7 +97,7 @@ public class ResetpswActivity extends BaseActivity implements View.OnClickListen
                     Toast.makeText(this,"两次输入密码不一致",Toast.LENGTH_SHORT).show();
                 }else {
                     UserBean userBean = new UserBean();
-                    userBean.setPhonenum(Long.valueOf(i.getStringExtra("phone")));
+                    userBean.setPhonenum(i.getStringExtra("phone"));
                     userBean.setType(i.getStringExtra("type"));
                     userBean.setPassWord(passStr);
                     Message message = new Message("UserBean",gson.toJson(userBean));

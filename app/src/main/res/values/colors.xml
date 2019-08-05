@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#88f7ff</color>
     <color name="colorPrimaryDark">#54000000</color>
-    <color name="colorAccent">#021af7</color>
+    <color name="colorAccent">#ecc0ff</color>
     <color name="text_blue">#1296db</color>
     <color name="text_black">#2c2c2c</color>
     <color name="transparent">#00546556</color>
@@ -17,14 +17,18 @@
     <color name="default_text_color">#bfbfbf</color>
     <color name="gray_font">#818181</color>
     <color name="hint_color">#bfbfbf</color>
-    <color name="font_value">#ff888271</color>
+    <color name="font_value">#61615f</color>
     <color name="timestampline">#ffe5e1de</color>
-    <color name="text_color">#ff434343</color>
+    <color name="text_color">#000000</color>
     <color name="blue">#499BF7</color>
-    <color name="gray">#A8A8A8</color>
+    <color name="gray">#eaeaea</color>
     <color name="green">#23d249</color>
+    <color name="yellow">#fab802</color>
+    <color name="red">#fd0202</color>
     <color name="default_line_color">#007de0</color>
     <color name="default_unSelect_text_color">#7c7979</color>
     <color name="default_selected_text_color">#007de0</color>
     <color name="default_round_line_color">#dad7d4</color>
+    <color name="icon_more">#70ff87</color>
+    <color name="background">#d6fffb</color>
 </resources>

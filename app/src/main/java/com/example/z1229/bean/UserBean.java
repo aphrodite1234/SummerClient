@@ -51,8 +51,8 @@ public class UserBean {
 		return phonenum;
 	}
 
-	public void setPhonenum(Long phonenum) {
-		this.phonenum = phonenum;
+	public void setPhonenum(String phonenum) {
+		this.phonenum = Long.valueOf(phonenum);
 	}
 
 	public byte[] getPhoto() {
