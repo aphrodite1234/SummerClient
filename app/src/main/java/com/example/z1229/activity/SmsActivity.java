@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.z1229.summerclient.R;
@@ -36,6 +37,7 @@ public class SmsActivity extends Activity implements  View.OnClickListener {
     private Button btn_check;
     private EditText et_checkecode;
     private Button btn_sure;
+    private TextView textView;
     private String code;
     private int TIME = 60;//倒计时60s这里应该多设置些因为mob后台需要60s,我们前端会有差异的建议设置90，100或者120
     public String country="86";//这是中国区号，如果需要其他国家列表，可以使用getSupportedCountries();获得国家区号
@@ -45,7 +47,7 @@ public class SmsActivity extends Activity implements  View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_sms);
         MobSDK.init(this);
         SMSSDK.registerEventHandler(eh); //注册短信回调（记得销毁，避免泄露内存）
         initView();
@@ -70,7 +72,7 @@ public class SmsActivity extends Activity implements  View.OnClickListener {
                     if (result == SMSSDK.RESULT_COMPLETE) {
                         // TODO 处理验证码验证通过的结果
                         Intent intent=new Intent(SmsActivity.this, ResetpswActivity.class);
-                        intent.putExtra("type","注册");
+                        intent.putExtra("type",textView.getText().toString());
                         intent.putExtra("phone",phone);
                         startActivity(intent);
                         finish();
@@ -109,8 +111,11 @@ public class SmsActivity extends Activity implements  View.OnClickListener {
         btn_check = (Button) findViewById(R.id.register_check);
         et_checkecode = (EditText) findViewById(R.id.et_checkecode);
         btn_sure = (Button) findViewById(R.id.register_sure);
+        textView = (TextView)findViewById(R.id.register_text);
         btn_check.setOnClickListener(this);
         btn_sure.setOnClickListener(this);
+        btn_sure.setEnabled(true);
+        textView.setText(getIntent().getStringExtra("type"));
     }
     @Override
     public void onClick(View v) {
@@ -139,6 +144,11 @@ public class SmsActivity extends Activity implements  View.OnClickListener {
                 else{//如果用户输入的内容为空，提醒用户
                     Toast.makeText(SmsActivity.this, "请输入验证码", Toast.LENGTH_SHORT).show();
                 }
+//                Intent intent=new Intent(SmsActivity.this, ResetpswActivity.class);
+//                intent.putExtra("type",textView.getText().toString());
+//                intent.putExtra("phone",et_phonenum.getText().toString().trim());
+//                startActivity(intent);
+//                finish();
                 break;
                 default:break;
         }

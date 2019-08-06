@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.z1229.activity.BloodActivity"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@id/btn_back"
+            android:layout_alignParentLeft="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_back_left"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="血糖曲线" />
+
+    </RelativeLayout>
+
+    <View
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"/>
+    <android.support.design.widget.TabLayout
+        android:background="@color/white"
+        android:id="@+id/blood_tab"
+        app:tabMode="scrollable"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="@color/icon_more"
+        app:tabTextColor="@color/font_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.design.widget.TabLayout>
+    <View
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"/>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/blood_tab_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:tabBackground="@drawable/selector_blood_tab"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/text_color">
+
+        </android.support.design.widget.TabLayout>
+    </RelativeLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/blood_line"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.github.mikephil.charting.charts.LineChart>
+
+</LinearLayout>

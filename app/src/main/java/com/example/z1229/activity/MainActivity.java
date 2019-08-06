@@ -1,8 +1,11 @@
 package com.example.z1229.activity;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +18,8 @@ import com.example.z1229.fragment.HomeFragment;
 import com.example.z1229.fragment.MoreFragment;
 import com.example.z1229.fragment.PluseFragment;
 import com.example.z1229.fragment.UserFragment;
+import com.example.z1229.receiver.SocketReceiver;
+import com.example.z1229.service.SocketService;
 import com.example.z1229.summerclient.R;
 
 import java.util.ArrayList;
@@ -24,11 +29,19 @@ public class MainActivity extends FragmentActivity {
     private FragmentTabHost mTabHost;
     private LayoutInflater mInflater;
     private ArrayList<Tab> mTabs = new ArrayList<Tab>(4);
+    private LocalBroadcastManager localBroadcastManager;
+    private SocketReceiver socketReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        socketReceiver = new SocketReceiver();
+        IntentFilter intentFilter = new IntentFilter("com.example.z1229.receiver.SocketReceiver");
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        localBroadcastManager.registerReceiver(socketReceiver,intentFilter);
+
         initTab();
     }
 
@@ -71,5 +84,13 @@ public class MainActivity extends FragmentActivity {
         Tab_img.setBackgroundResource(tab.getImage());
         Tab_txt.setText(tab.getText());
         return view;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        localBroadcastManager.unregisterReceiver(socketReceiver);
+        Intent intent = new Intent(this,SocketService.class);
+        stopService(intent);
     }
 }

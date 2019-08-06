@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context="com.example.z1229.activity.BloodAddActivity">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@id/btn_back"
+            android:layout_alignParentLeft="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_back_left"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="添加血糖记录" />
+        <ImageButton
+            android:id="@+id/blood_add_history"
+            android:layout_alignParentRight="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_history"/>
+    </RelativeLayout>
+
+    <View
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"/>
+    <android.support.design.widget.TabLayout
+        android:background="@color/white"
+        android:id="@+id/blood_tab_add"
+        app:tabMode="scrollable"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="@color/icon_more"
+        app:tabTextColor="@color/font_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.design.widget.TabLayout>
+    <View
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"/>
+    <RelativeLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/blood_linear"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <EditText
+                android:text="0.0"
+                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:id="@+id/blood_add_edit"
+                android:layout_width="60dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:id="@+id/blood_add_mol"
+                android:layout_below="@id/blood_add_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mmol/L"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/blood_add_normal"
+            android:layout_below="@id/blood_linear"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正常范围"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/blood_add_time"
+            android:layout_below="@id/blood_add_normal"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测量时间"/>
+
+        <SeekBar
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/blood_add_time"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/blood_add_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="5.0dp"
+            android:minHeight="5.0dp"
+            android:max="350"
+            android:progressDrawable="@drawable/seekbar"/>
+
+    </RelativeLayout>
+
+    <EditText
+        android:selectAllOnFocus="true"
+        android:padding="5dp"
+        android:gravity="left"
+        android:hint="添加备注信息"
+        android:maxLines="5"
+        android:id="@+id/blood_add_remark"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="130dp" />
+
+    <Button
+        android:textSize="20sp"
+        android:background="@color/icon_more"
+        android:id="@+id/blood_add_save"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="保存"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

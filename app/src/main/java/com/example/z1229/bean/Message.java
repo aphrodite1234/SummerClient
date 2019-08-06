@@ -5,6 +5,11 @@ public class Message {
 	private String content;
 	private String type;
 
+	public Message(String type,String content){
+		this.type = type;
+		this.content = content;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -18,4 +23,5 @@ public class Message {
 	public void setType(String type) {
 		this.type = type;
 	}
+
 }

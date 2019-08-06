@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
+import com.example.z1229.bean.Message;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -48,14 +49,11 @@ public class SocketService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        System.out.println("onStartCommand");
 
-
-//        RMessage rMessage = new RMessage();
-//        rMessage.setPhoto(intent.getByteArrayExtra("data"));
-//        Gson gson = new Gson();
-//
-//        boolean send = sendMsg(gson.toJson(rMessage));
+        boolean send;
+        if(intent.getStringExtra("message")!=null){
+            send = sendMsg(intent.getStringExtra("message"));
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -89,8 +87,8 @@ public class SocketService extends Service {
         @Override
         public void run() {
             if (System.currentTimeMillis() - sendTime >= HEART_BEAT_RATE) {
-                String string="心跳";
-                boolean isSuccess = sendMsg(string);
+                Message message = new Message("心跳","");
+                boolean isSuccess = sendMsg(gson.toJson(message));
                 if (!isSuccess) {
                     mHandler.removeCallbacks(heartRunnable);
                     if(readThread!=null){
@@ -141,9 +139,6 @@ public class SocketService extends Service {
                     }
                 }
             }).start();
-            if(!msg.equals("心跳")){
-                System.out.println("++++++++++++++++++++++++++++++++++++++"+msg);
-            }
             sendTime=System.currentTimeMillis();
         }else{
             return false;
@@ -172,7 +167,7 @@ public class SocketService extends Service {
                     String line=null;
                     while(!socket.isInputShutdown()&&!socket.isClosed()&&(line=reader.readLine())!=null){
                         System.out.println("+++++++++++++++++++++++++++++++++++++++"+line);
-                        Intent intent = new Intent("SocketReceiver");
+                        Intent intent = new Intent("com.example.z1229.receiver.SocketReceiver");
                         intent.putExtra("text",line);
                         localBroadcastManager.sendBroadcast(intent);
                     }

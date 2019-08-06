@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.z1229.activity.EatActivity"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@id/btn_back"
+            android:layout_alignParentLeft="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_back_left"/>
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/eat_text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="今天" />
+            <ImageButton
+                android:id="@+id/eat_triangle"
+                android:layout_width="40dp"
+                android:layout_height="33dp"
+                android:background="@drawable/ic_triangle"/>
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/eat_btn_history"
+            android:layout_alignParentRight="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_history"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/eat_pie"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+        </com.github.mikephil.charting.charts.PieChart>
+
+        <LinearLayout
+            android:id="@+id/eat_lin"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/eat_pie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已摄入:"/>
+            <TextView
+                android:id="@+id/eat_text_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="千卡"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/eat_lin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="推荐摄入:"/>
+            <TextView
+                android:id="@+id/eat_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/yellow"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="千卡"/>
+            <ImageButton
+                android:id="@+id/eat_btn_right"
+                android:layout_marginLeft="10dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_right"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/eat_btn_add"
+        android:text="添加饮食记录"
+        android:background="@color/icon_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

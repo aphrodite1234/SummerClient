@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +26,7 @@
         android:roundIcon="@mipmap/ic_app_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.z1229.activity.MainActivity">
+        <activity android:name="com.example.z1229.activity.LoadActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,8 +35,21 @@
         </activity>
         <activity android:name="com.example.z1229.activity.SmsActivity" />
         <activity android:name="com.example.z1229.activity.ResetpswActivity" />
-        <activity android:name="com.example.z1229.activity.ResetSucceed" />
-        <activity android:name="com.example.z1229.activity.LoadActivity"></activity>
+        <activity android:name="com.example.z1229.activity.MainActivity" />
+
+        <service android:name="com.example.z1229.service.SocketService" />
+
+        <receiver android:name="com.example.z1229.receiver.SocketReceiver" />
+
+        <activity android:name="com.example.z1229.activity.ClockActivity" />
+        <activity android:name="com.example.z1229.activity.ClockAddActivity" />
+        <activity android:name="com.example.z1229.activity.BloodActivity" />
+        <activity android:name="com.example.z1229.activity.BloodAddActivity" />
+        <activity android:name="com.example.z1229.activity.EatActivity" />
+        <activity android:name="com.example.z1229.activity.EatAddActivity" />
+        <activity android:name="com.example.z1229.activity.SportActivity" />
+        <activity android:name="com.example.z1229.activity.SportAddActivity" />
+        <activity android:name="com.example.z1229.activity.SportHistoryActivity"></activity>
     </application>
 
 </manifest>
