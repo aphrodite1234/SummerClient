@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#88f7ff</color>
+    <color name="colorPrimaryDark">#54000000</color>
+    <color name="colorAccent">#021af7</color>
+    <color name="text_blue">#1296db</color>
+    <color name="text_black">#2c2c2c</color>
+    <color name="transparent">#00546556</color>
+    <color name="translucent_white">#61FFFFFF</color>
+    <color name="smssdk_line_light_gray">#d3d3d3</color>
+    <color name="smssdk_white">#ffffff</color>
+    <color name="white">#ffffffff</color>
+    <color name="interval_color">#e7e5e5</color>
+    <color name="white_color">#ffffff</color>
+    <color name="app_black_color">#616060</color>
+    <color name="app_red_color">#d81e06</color>
+    <color name="default_text_color">#bfbfbf</color>
+    <color name="gray_font">#818181</color>
+    <color name="hint_color">#bfbfbf</color>
+    <color name="font_value">#ff888271</color>
+    <color name="timestampline">#ffe5e1de</color>
+    <color name="text_color">#ff434343</color>
+    <color name="blue">#499BF7</color>
+    <color name="gray">#A8A8A8</color>
+    <color name="green">#23d249</color>
+    <color name="default_line_color">#007de0</color>
+    <color name="default_unSelect_text_color">#7c7979</color>
+    <color name="default_selected_text_color">#007de0</color>
+    <color name="default_round_line_color">#dad7d4</color>
+</resources>

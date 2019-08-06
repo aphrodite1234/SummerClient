@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/smssdk_white"
+            android:text="重置成功"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginLeft="10dp">
+        <View
+            android:id="@+id/pass4_view"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:layout_alignParentTop="true"/>
+        <ImageView
+            android:id="@+id/pass4_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="80dp"
+            android:layout_below="@id/pass4_view"/>
+        <TextView
+            android:id="@+id/pass4_txt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/pass4_txt2"
+            android:layout_toRightOf="@id/pass4_image"
+            android:layout_alignTop="@id/pass4_image"
+            android:text="密码重置成功"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/pass4_txt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/pass4_image"
+            android:layout_toEndOf="@id/pass4_image"
+            android:layout_toRightOf="@id/pass4_image"
+            android:text="请重新登录"
+            android:textSize="20sp" />
+        <!--<Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello "
+            android:layout_above="@+id/btn2" />　　　　
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="world"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />-->
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:layout_marginRight="10dp"
+            android:id="@+id/pass4_back"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="返回登录界面"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>
