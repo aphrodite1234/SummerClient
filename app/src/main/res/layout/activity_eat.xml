@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.z1229.activity.EatActivity"
-    android:orientation="vertical"
-    android:background="@color/background">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:background="@color/white"
@@ -72,6 +71,8 @@
                 android:layout_height="wrap_content"
                 android:text="已摄入:"/>
             <TextView
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/eat_text_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,6 +95,8 @@
                 android:layout_height="wrap_content"
                 android:text="推荐摄入:"/>
             <TextView
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:id="@+id/eat_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,5 +121,12 @@
         android:background="@color/icon_more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <ExpandableListView
+        android:id="@+id/eat_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:groupIndicator="@null">
+
+    </ExpandableListView>
 
 </LinearLayout>

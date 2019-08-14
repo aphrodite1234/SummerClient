@@ -49,7 +49,10 @@
         <activity android:name="com.example.z1229.activity.EatAddActivity" />
         <activity android:name="com.example.z1229.activity.SportActivity" />
         <activity android:name="com.example.z1229.activity.SportAddActivity" />
-        <activity android:name="com.example.z1229.activity.SportHistoryActivity"></activity>
+        <activity android:name="com.example.z1229.activity.SportHistoryActivity" />
+        <activity android:name="com.example.z1229.activity.EatSelectActivity" />
+        <activity android:name="com.example.z1229.activity.EatSearchActivity" />
+        <activity android:name="com.example.z1229.activity.EatCalActivity"></activity>
     </application>
 
 </manifest>

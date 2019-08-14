@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.z1229.base.DBOpenHelper;
 import com.example.z1229.bean.Message;
 import com.example.z1229.summerclient.R;
 import com.example.z1229.utils.SPUtils;
@@ -30,11 +31,13 @@ public class LoadActivity extends BaseActivity {
     Gson gson = new Gson();
     boolean visible=false;
     private Intent service;
+    private DBOpenHelper dbOpenHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
+        dbOpenHelper = new DBOpenHelper(this);
 
         mButton01=(ImageButton)findViewById(R.id.Button01);
         register =(TextView) findViewById(R.id.Button02);

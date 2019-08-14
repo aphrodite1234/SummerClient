@@ -70,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <EditText
+                android:textColor="@color/yellow"
                 android:text="0.0"
                 android:textSize="20sp"
                 android:layout_margin="5dp"
@@ -85,27 +86,35 @@
                 android:text="mmol/L"/>
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/blood_add_lin"
             android:layout_marginTop="10dp"
-            android:id="@+id/blood_add_normal"
+            android:layout_centerHorizontal="true"
             android:layout_below="@id/blood_linear"
-            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="正常范围"/>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/blood_add_time"
-            android:layout_below="@id/blood_add_normal"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="测量时间"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正常范围:"/>
+            <TextView
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:textSize="20sp"
+                android:id="@+id/blood_add_ear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mmol/L"/>
+        </LinearLayout>
 
         <SeekBar
             android:layout_marginBottom="20dp"
             android:layout_marginTop="15dp"
-            android:layout_below="@id/blood_add_time"
+            android:layout_below="@id/blood_add_lin"
             android:layout_centerHorizontal="true"
             android:id="@+id/blood_add_seek"
             android:layout_width="match_parent"
@@ -117,17 +126,35 @@
 
     </RelativeLayout>
 
-    <EditText
-        android:selectAllOnFocus="true"
-        android:padding="5dp"
-        android:gravity="left"
-        android:hint="添加备注信息"
-        android:maxLines="5"
-        android:id="@+id/blood_add_remark"
+    <RelativeLayout
         android:layout_marginTop="10dp"
         android:background="@color/white"
+        android:id="@+id/blood_add_date"
         android:layout_width="match_parent"
-        android:layout_height="130dp" />
+        android:layout_height="50dp">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:text="测量日期"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/blood_add_date_text"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_right"/>
+    </RelativeLayout>
 
     <Button
         android:textSize="20sp"

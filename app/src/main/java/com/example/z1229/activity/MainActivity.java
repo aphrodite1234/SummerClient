@@ -13,9 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.example.z1229.base.DBOpenHelper;
 import com.example.z1229.base.Tab;
 import com.example.z1229.fragment.HomeFragment;
-import com.example.z1229.fragment.MoreFragment;
+import com.example.z1229.fragment.RecordFragment;
 import com.example.z1229.fragment.PluseFragment;
 import com.example.z1229.fragment.UserFragment;
 import com.example.z1229.receiver.SocketReceiver;
@@ -49,7 +50,7 @@ public class MainActivity extends FragmentActivity {
         //实例化4个Tab类的对象
         Tab Tab_home = new Tab(R.drawable.selector_home, R.string.home, HomeFragment.class);
         Tab Tab_user = new Tab(R.drawable.selector_user, R.string.user, UserFragment.class);
-        Tab Tab_more = new Tab(R.drawable.selector_more, R.string.more, MoreFragment.class);
+        Tab Tab_more = new Tab(R.drawable.selector_more, R.string.more, RecordFragment.class);
         Tab Tab_plus = new Tab(R.drawable.selector_plus, R.string.plus, PluseFragment.class);
 
         //将这4个对象加到一个List中

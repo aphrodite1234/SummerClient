@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/dialog_eat_re"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/eat_select_dialog_cal"
+                android:textSize="30sp"
+                android:text="0"
+                android:textColor="@color/yellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="20sp"
+                android:text="千卡"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <NumberPicker
+            android:layout_margin="5dp"
+            android:id="@+id/eat_select_k"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+        </NumberPicker>
+
+        <NumberPicker
+            android:layout_margin="5dp"
+            android:id="@+id/eat_select_b"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+        </NumberPicker>
+
+        <NumberPicker
+            android:layout_margin="5dp"
+            android:id="@+id/eat_select_s"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+        </NumberPicker>
+
+        <TextView
+            android:id="@+id/dialog_eat_point"
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:textSize="20sp"
+            android:text="."/>
+
+        <NumberPicker
+            android:layout_margin="5dp"
+            android:id="@+id/eat_select_g"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+        </NumberPicker>
+
+        <TextView
+            android:id="@+id/dialog_eat_ke"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="克"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/eat_select_dialog_cancel"
+            android:layout_margin="5dp"
+            android:text="取消"
+            android:background="@color/icon_more"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/eat_select_dialog_ok"
+            android:layout_margin="5dp"
+            android:text="确定"
+            android:background="@color/icon_more"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>
