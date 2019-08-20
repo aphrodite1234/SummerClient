@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.z1229.fragment.MoreFragment"
+    tools:context="com.example.z1229.fragment.RecordFragment"
     android:background="@color/background">
 
 

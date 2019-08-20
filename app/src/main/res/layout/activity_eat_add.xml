@@ -33,7 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
             android:background="@drawable/ic_save"/>
     </RelativeLayout>
@@ -66,12 +66,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
+            android:clickable="true"
             android:id="@+id/eat_add_date"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="50dp">
             <TextView
                 android:layout_marginLeft="10dp"
-                android:text="用餐时间"
+                android:text="用餐日期"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,12 +98,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/gray_font"/>
+            android:background="@color/gray"/>
 
         <RelativeLayout
+            android:clickable="true"
             android:id="@+id/eat_add_time"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="50dp">
             <TextView
                 android:layout_marginLeft="10dp"
                 android:text="用餐类别"
@@ -138,25 +140,34 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/eat_add"
+            android:layout_margin="5dp"
+            android:id="@+id/eat_add_add"
+            android:clickable="true"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="30dp">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ic_record_plus"/>
             <TextView
                 android:textColor="@color/icon_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="添加食物"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_record_plus"/>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray_font"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/eat_add_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

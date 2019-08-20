@@ -1,14 +1,15 @@
 package com.example.z1229.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.z1229.adapter.XAxisValueFormatter;
+import com.example.z1229.base.DBOpenHelper;
 import com.example.z1229.base.LineMarkerView;
 import com.example.z1229.summerclient.R;
 import com.github.mikephil.charting.charts.LineChart;
@@ -22,40 +23,52 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class BloodActivity extends AppCompatActivity implements View.OnClickListener,OnChartValueSelectedListener {
 
-    private TabLayout tabLayout,tab;
-    private ImageButton back;
+    private TabLayout tabLayout, itemtab;
+    private ImageButton back,add;
     private LineChart lineChart;
+    private DBOpenHelper dbOpenHelper;
     private static final String[] tabText = {"早餐前","早餐后","午餐前","午餐后","晚餐前","晚餐后","睡觉前"};
-//    private static final float[] range =
+    private ArrayList<ArrayList<String>> db_data = new ArrayList<>();
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd");
+    private ArrayList<ArrayList<String>> xLists = new ArrayList<>();
+    private ArrayList<ArrayList<Entry>> yLists = new ArrayList<>();
+    private int[] item_count = {7,15,30};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood);
+        dbOpenHelper = new DBOpenHelper(this);
+        db_data = dbOpenHelper.search_b(dbOpenHelper,7);
+        initData(7);
         initview();
         initLineChart();
-        initdata();
+        initLineData(7);
     }
 
     private void initview(){
         tabLayout = (TabLayout)findViewById(R.id.blood_tab);
-        tab = (TabLayout)findViewById(R.id.blood_tab_1);
+        itemtab = (TabLayout)findViewById(R.id.blood_tab_1);
         back = (ImageButton)findViewById(R.id.btn_back);
+        add = (ImageButton)findViewById(R.id.blood_add);
         back.setOnClickListener(this);
+        add.setOnClickListener(this);
         for(String text:tabText){
             tabLayout.addTab(tabLayout.newTab().setText(text));
         }
-        tab.addTab(tab.newTab().setText("最近7天"));
-        tab.addTab(tab.newTab().setText("最近15天"));
-        tab.addTab(tab.newTab().setText("最近30天"));
+        itemtab.addTab(itemtab.newTab().setText("最近7天"));
+        itemtab.addTab(itemtab.newTab().setText("最近15天"));
+        itemtab.addTab(itemtab.newTab().setText("最近30天"));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Toast.makeText(BloodActivity.this,tab.getText(),Toast.LENGTH_SHORT).show();
+                initLineData(item_count[itemtab.getSelectedTabPosition()]);
             }
 
             @Override
@@ -68,10 +81,12 @@ public class BloodActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-        tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        itemtab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Toast.makeText(BloodActivity.this,tab.getText(),Toast.LENGTH_SHORT).show();
+                db_data = dbOpenHelper.search_b(dbOpenHelper,item_count[tab.getPosition()]);
+                initData(item_count[tab.getPosition()]);
+                initLineData(item_count[tab.getPosition()]);
             }
 
             @Override
@@ -91,7 +106,6 @@ public class BloodActivity extends AppCompatActivity implements View.OnClickList
         lineChart.setOnChartValueSelectedListener(this);
         lineChart.getDescription().setEnabled(false);
         lineChart.setNoDataText("暂无数据");
-        lineChart.setScaleEnabled(false);
 
         XAxis x = lineChart.getXAxis();
         x.setDrawGridLines(false);
@@ -106,34 +120,33 @@ public class BloodActivity extends AppCompatActivity implements View.OnClickList
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setGranularityEnabled(true);
         leftAxis.setLabelCount(7);
+    }
 
-        LimitLine limitLine = new LimitLine(10f,"10.0");
+    private void initLineData(int count){
+        int i = tabLayout.getSelectedTabPosition();
+        YAxis leftAxis = lineChart.getAxisLeft();
+        leftAxis.removeAllLimitLines();
+        LimitLine limitLine,limitLine1;
+        if(i%2==0){
+            limitLine = new LimitLine(7f,"7.0");
+            limitLine1 = new LimitLine(4.5f,"4.5");
+        }else {
+            limitLine = new LimitLine(10f,"10.0");
+            limitLine1 = new LimitLine(4.5f,"4.5");
+        }
         limitLine.setLineColor(Color.RED);
-        LimitLine limitLine1 = new LimitLine(4.5f,"4.5");
         limitLine1.setLineColor(Color.YELLOW);
         leftAxis.addLimitLine(limitLine);
         leftAxis.addLimitLine(limitLine1);
-    }
 
-    private void initdata(){
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("7-28");
-        arrayList.add("7-29");
-        arrayList.add("7-30");
-        arrayList.add("7-31");
-        arrayList.add("8-1");
-        arrayList.add("8-2");
-        arrayList.add("8-3");
         ArrayList<Entry> data = new ArrayList<>();
+
+        arrayList = xLists.get(i);
+        data = yLists.get(i);
+
         XAxisValueFormatter xAxisValueFormatter = new XAxisValueFormatter(arrayList);
         lineChart.getXAxis().setValueFormatter(xAxisValueFormatter);
-        data.add(new Entry(0,6.7f));
-        data.add(new Entry(1,4.6f));
-        data.add(new Entry(2,5.0f));
-        data.add(new Entry(3,5.5f));
-        data.add(new Entry(4,6.1f));
-        data.add(new Entry(5,10.6f));
-        data.add(new Entry(6,2.6f));
 
         LineDataSet lineDataSet = new LineDataSet(data,"血糖/mmol/L");
         lineDataSet.setCircleColor(Color.GREEN);
@@ -148,14 +161,48 @@ public class BloodActivity extends AppCompatActivity implements View.OnClickList
         LineData lineData = new LineData(datas);
         lineChart.setData(lineData);
         lineChart.invalidate();
+        lineChart.animateY(1000);
     }
 
+    private void initData(int count){
+        xLists.clear();
+        yLists.clear();
+        for (int i=0;i<7;i++){
+            xLists.add(new ArrayList<String>());
+            yLists.add(new ArrayList<Entry>());
+        }
+        for (int i=0;i<7;i++){
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH,-count);
+            for (int j=0;j<count;j++){
+                calendar.add(Calendar.DAY_OF_MONTH,1);
+                xLists.get(i).add(dateFormat.format(calendar.getTime()));
+                yLists.get(i).add(new Entry(j,0));
+            }
+        }
+        if (db_data.size()>0){
+            for (ArrayList<String> item: db_data){
+                int po = Integer.valueOf(item.get(0));
+                float value = Float.valueOf(item.get(1));
+                for (int i=0;i<xLists.get(po).size();i++){
+                    if(xLists.get(po).get(i).equals(item.get(2).substring(5))){
+                        yLists.get(po).set(i,new Entry(i,value));
+                    }
+                }
+
+            }
+        }
+    }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_back:
+                finish();
+                break;
+            case R.id.blood_add:
+                startActivity(new Intent(this,BloodAddActivity.class));
                 finish();
                 break;
             default:
@@ -168,13 +215,25 @@ public class BloodActivity extends AppCompatActivity implements View.OnClickList
         LineMarkerView lineMarkerView = new LineMarkerView(this,lineChart.getXAxis().getValueFormatter(),"mmol/L");
         lineMarkerView.setChartView(lineChart);
         lineChart.setMarker(lineMarkerView);
-        if(e.getY()<4.5){
-            lineMarkerView.setColor(this.getResources().getColor(R.color.yellow));
-        }else if(e.getY()<10){
-            lineMarkerView.setColor(this.getResources().getColor(R.color.icon_more));
+        int i = tabLayout.getSelectedTabPosition();
+        if(i%2 == 0){
+            if(e.getY()<4.5){
+                lineMarkerView.setColor(this.getResources().getColor(R.color.yellow));
+            }else if(e.getY()<7.0){
+                lineMarkerView.setColor(this.getResources().getColor(R.color.icon_more));
+            }else {
+                lineMarkerView.setColor(this.getResources().getColor(R.color.red));
+            }
         }else {
-            lineMarkerView.setColor(this.getResources().getColor(R.color.red));
+            if(e.getY()<4.5){
+                lineMarkerView.setColor(this.getResources().getColor(R.color.yellow));
+            }else if(e.getY()<10){
+                lineMarkerView.setColor(this.getResources().getColor(R.color.icon_more));
+            }else {
+                lineMarkerView.setColor(this.getResources().getColor(R.color.red));
+            }
         }
+
         lineChart.invalidate();
     }
 
