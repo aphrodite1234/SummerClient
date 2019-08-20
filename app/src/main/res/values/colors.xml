@@ -23,12 +23,16 @@
     <color name="blue">#499BF7</color>
     <color name="gray">#eaeaea</color>
     <color name="green">#23d249</color>
+    <color name="bg_home_diet">#228B22</color>
     <color name="yellow">#fab802</color>
+    <color name="brown">#8B4513</color>
     <color name="red">#fd0202</color>
+    <color name="pink">#EE799F</color>
     <color name="default_line_color">#007de0</color>
     <color name="default_unSelect_text_color">#7c7979</color>
     <color name="default_selected_text_color">#007de0</color>
     <color name="default_round_line_color">#dad7d4</color>
     <color name="icon_more">#70ff87</color>
     <color name="background">#d6fffb</color>
+    <color name="home_background">#fff5f9fa</color>
 </resources>

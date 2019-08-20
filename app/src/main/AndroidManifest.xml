@@ -26,7 +26,7 @@
         android:roundIcon="@mipmap/ic_app_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.z1229.activity.LoadActivity">
+        <activity android:name="com.example.z1229.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +35,7 @@
         </activity>
         <activity android:name="com.example.z1229.activity.SmsActivity" />
         <activity android:name="com.example.z1229.activity.ResetpswActivity" />
-        <activity android:name="com.example.z1229.activity.MainActivity" />
+        <activity android:name="com.example.z1229.activity.LoadActivity" />
 
         <service android:name="com.example.z1229.service.SocketService" />
 
@@ -50,6 +50,7 @@
         <activity android:name="com.example.z1229.activity.SportActivity" />
         <activity android:name="com.example.z1229.activity.SportAddActivity" />
         <activity android:name="com.example.z1229.activity.SportHistoryActivity"></activity>
+        <activity android:name="com.example.z1229.fragment.HomeActivity"/>
     </application>
 
 </manifest>

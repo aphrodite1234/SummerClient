@@ -19,4 +19,17 @@
     <string name="plus">圈子</string>
     <string name="more">记录</string>
     <string name="user">我的</string>
+    <string name="more1">更多</string>
+
+    <string name="home_add_record">记录血糖</string>
+    <string name="home_GI_value">升糖指数</string>
+    <string name="home_science_diet">科学饮食</string>
+    <string name="home_wiki">知识百科</string>
+
+    <string name="username">用户名</string>
+    <string name="attention">+关注</string>
+    <string name="dianzan">点赞</string>
+    <string name="huifu">回复</string>
+    <string name="date">2019/8/12</string>
+    <string name="teststring">如果你想为TextView设置一个边框背景，普通矩形边框或者圆角边框！下面可能帮到你！ 另外TextView是很多其他控件的父类，比如Button，也可以设置这样的边框！ 实现原理很简单，自行编写一个ShapeDrawable的资源文件！然后TextView将blackgroung 设置为这个drawable资源即可！</string>
 </resources>
