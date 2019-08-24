@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/search_back_img"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/smssdk_back_arrow"
+            android:layout_centerVertical="true" />
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/view_searcher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@mipmap/ic_top_search"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@color/transparent"
+            app:queryHint="搜索" />
+        <TextView
+            android:id="@+id/search_search_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/smssdk_search"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText,RtlHardcoded"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.example.z1229.summerclient.R;
+
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<RViewHo
     private LayoutInflater mInflater;
     private OnItemLongClickListener mLongClickListener;
     private OnItemClickListener mClickListener;
+
     public RecycleViewAdapter(Context context, List<T> data){
         this.mContext = context;
         this.mList = data;
@@ -89,4 +92,16 @@ public abstract class RecycleViewAdapter<T> extends RecyclerView.Adapter<RViewHo
     public void setItemClickListener(OnItemClickListener clickListener){
         this.mClickListener = clickListener;
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(RViewHolder holder, int position);
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(RViewHolder holder,int position);
+    }
+
+   /* public interface OnItemChildrenClickListener1{//点击textView阅读详情
+        void onChildClick(View view,int position);
+    }*/
 }

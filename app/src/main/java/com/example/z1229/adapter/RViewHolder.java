@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Checkable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -61,6 +62,7 @@ public class RViewHolder extends RecyclerView.ViewHolder{
     public ImageView getImageView(int viewId){
         return getView(viewId);
     }
+    public LinearLayout getLinearLayout(int viewId){return getView(viewId);}
 
     public void setText(int viewId, String text) {
         TextView tv = getView(viewId);
@@ -95,7 +97,7 @@ public class RViewHolder extends RecyclerView.ViewHolder{
                 .asBitmap()
                 .load(s)
                 .apply(new RequestOptions()
-                .error(R.mipmap.error)
+                .error(default_img_id)
                 .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(view);
     }
