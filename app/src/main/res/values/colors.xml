@@ -35,5 +35,6 @@
     <color name="default_round_line_color">#dad7d4</color>
     <color name="icon_more">#70ff87</color>
     <color name="home_background">#fff5f9fa</color>
+    <color name="gradient">#6ac289</color>
     <color name="background">#dffaf8</color>
 </resources>

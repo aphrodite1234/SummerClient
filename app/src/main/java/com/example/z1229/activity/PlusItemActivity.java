@@ -34,6 +34,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.z1229.activity.LoadActivity.SOCKET_BINDER;
+
 public class PlusItemActivity extends BaseActivity {
 
     @BindView(R.id.btn_back)
@@ -224,7 +226,7 @@ public class PlusItemActivity extends BaseActivity {
         comment.setDyId(dynamic.getDyid());
         comment.setType(type);
         Message message=new Message("CommentBean",gson.toJson(comment));
-        MainActivity.SOCKET_BINDER.send(gson.toJson(message));
+        SOCKET_BINDER.send(gson.toJson(message));
     }
 
     private void zan(){
@@ -239,7 +241,7 @@ public class PlusItemActivity extends BaseActivity {
         commentBean.setDyId(dynamic.getDyid());
         commentBean.setDateTime(new Date());
         Message message=new Message("CommentBean",gson.toJson(commentBean));
-        MainActivity.SOCKET_BINDER.send(gson.toJson(message));
+        SOCKET_BINDER.send(gson.toJson(message));
     }
 
     /**
@@ -257,7 +259,7 @@ public class PlusItemActivity extends BaseActivity {
         commentBean.setContent(content);
         commentBean.setDateTime(new Date());
         Message message=new Message("CommentBean",gson.toJson(commentBean));
-        MainActivity.SOCKET_BINDER.send(gson.toJson(message));
+        SOCKET_BINDER.send(gson.toJson(message));
     }
 
     /**

@@ -28,6 +28,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.z1229.activity.LoadActivity.SOCKET_BINDER;
+
 public class UserActivity extends BaseActivity {
 
     @BindView(R.id.user_back)
@@ -102,6 +104,10 @@ public class UserActivity extends BaseActivity {
         dyAdapter.setOnItemClickListener(new PlusAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
+                CommentBean commentBean=new CommentBean();
+                commentBean.setDyId(dyAdapter.getDynamic(position).getDyid());
+                Message message=new Message("CommentBean",gson.toJson(commentBean));
+                SOCKET_BINDER.send(gson.toJson(message));
                 Intent intent = new Intent(UserActivity.this, PlusItemActivity.class);
                 String con = gson.toJson(dyAdapter.getDynamic(position));
                 intent.putExtra("dynamic", con);
@@ -123,7 +129,7 @@ public class UserActivity extends BaseActivity {
         dynamic.setReceiverPhone(15083498391L);
         dynamic.setState(type);
         Message message = new Message("Dynamic", gson.toJson(dynamic));
-        MainActivity.SOCKET_BINDER.send(gson.toJson(message));
+        SOCKET_BINDER.send(gson.toJson(message));
     }
 
 

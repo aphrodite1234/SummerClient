@@ -1,10 +1,7 @@
 package com.example.z1229.activity;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -29,17 +26,12 @@ public class MainActivity extends FragmentActivity {
     private FragmentTabHost mTabHost;
     private LayoutInflater mInflater;
     private ArrayList<Tab> mTabs = new ArrayList<Tab>(4);
-    public static SocketService.MyBinder SOCKET_BINDER;
-    private SocketServiceConnection socketServiceConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //绑定socketservice,获取binder对象
-        Intent service = new Intent(this,SocketService.class);
-        socketServiceConnection = new SocketServiceConnection();
-        bindService(service,socketServiceConnection,BIND_AUTO_CREATE);
+
         initTab();
     }
 
@@ -89,18 +81,5 @@ public class MainActivity extends FragmentActivity {
         super.onDestroy();
         Intent intent = new Intent(this,SocketService.class);
         stopService(intent);
-        unbindService(socketServiceConnection);
-    }
-
-    public class SocketServiceConnection implements ServiceConnection {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            SOCKET_BINDER = (SocketService.MyBinder)service;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
     }
 }

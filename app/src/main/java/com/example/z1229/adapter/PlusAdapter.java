@@ -15,7 +15,6 @@ import com.assionhonty.lib.assninegridview.AssNineGridView;
 import com.assionhonty.lib.assninegridview.AssNineGridViewClickAdapter;
 import com.assionhonty.lib.assninegridview.ImageInfo;
 import com.bumptech.glide.Glide;
-import com.example.z1229.activity.MainActivity;
 import com.example.z1229.activity.PlusItemActivity;
 import com.example.z1229.activity.UserActivity;
 import com.example.z1229.bean.CommentBean;
@@ -32,16 +31,23 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.z1229.activity.LoadActivity.SOCKET_BINDER;
+
 public class PlusAdapter extends RecyclerView.Adapter<PlusAdapter.VH> {
 
     public Context context;
     private OnItemClickListener clickListener;
     private ArrayList<Dynamic> mData = new ArrayList<>();
     private int index;
+    private boolean home=false;
 
     public PlusAdapter(){}
     public PlusAdapter(Context context){
         this.context = context;
+    }
+    public PlusAdapter(Context context,boolean home){
+        this.context = context;
+        this.home=home;
     }
     public PlusAdapter(Context context,ArrayList<Dynamic> mData){
         this.context = context;
@@ -64,7 +70,11 @@ public class PlusAdapter extends RecyclerView.Adapter<PlusAdapter.VH> {
         viewHolder.itemPlusContent.setText(dynamic.getContent());
         viewHolder.plusCommentCount.setText(String.valueOf(dynamic.getComment_count()));
         viewHolder.plusZanCount.setText(String.valueOf(dynamic.getZan_count()));
-        viewHolder.itemPlusTime.setText(dynamic.getDytime());
+        if(home){
+            viewHolder.itemPlusTime.setText("浏览"+String.valueOf(dynamic.getBrocount())+"次");
+        }else {
+            viewHolder.itemPlusTime.setText(dynamic.getDytime());
+        }
         if(dynamic.getZan_bool()==1){
             Glide.with(context).load(R.drawable.ic_zan_pressed).into(viewHolder.plusZanBtn);
             viewHolder.plusZanCount.setTextColor(context.getResources().getColor(R.color.icon_more));
@@ -99,7 +109,12 @@ public class PlusAdapter extends RecyclerView.Adapter<PlusAdapter.VH> {
                 comment.setDyId(mData.get(i).getDyid());
                 comment.setDateTime(new Date());
                 Message message=new Message("CommentBean",gson.toJson(comment));
-                MainActivity.SOCKET_BINDER.send(gson.toJson(message));
+                SOCKET_BINDER.send(gson.toJson(message));
+                CommentBean commentBean=new CommentBean();
+                commentBean.setDyId(mData.get(i).getDyid());
+                commentBean.setType("浏览");
+                Message message1=new Message("CommentBean",gson.toJson(commentBean));
+                SOCKET_BINDER.send(gson.toJson(message1));
             }
         });
         viewHolder.itemPlusImage.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +157,10 @@ public class PlusAdapter extends RecyclerView.Adapter<PlusAdapter.VH> {
 
     public int getIndex() {
         return index;
+    }
+
+    public void setHome(boolean home) {
+        this.home = home;
     }
 
     static class VH extends RecyclerView.ViewHolder {

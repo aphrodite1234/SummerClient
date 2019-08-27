@@ -1,7 +1,10 @@
 package com.example.z1229.activity;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,26 +36,39 @@ public class LoadActivity extends BaseActivity {
     boolean visible=false;
     private Intent service;
     private DBOpenHelper dbOpenHelper;
+    public static SocketService.MyBinder SOCKET_BINDER;
+    private ServiceConnection serviceConnection=new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            SOCKET_BINDER =(SocketService.MyBinder)service;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
-        dbOpenHelper = new DBOpenHelper(this);
 
+        service = new Intent(LoadActivity.this,SocketService.class);
+        startService(service);
+
+        //绑定socketservice,获取binder对象
+        bindService(service,serviceConnection,BIND_AUTO_CREATE);
+        initView();
+    }
+
+    private void initView(){
         mButton01=(ImageButton)findViewById(R.id.Button01);
         register =(TextView) findViewById(R.id.Button02);
         resetpsw =(TextView) findViewById(R.id.Button03);
         mEditText01=(EditText)findViewById(R.id.EditText01);
         mEditText02=(EditText)findViewById(R.id.EditText02);
         image = (ImageView)findViewById(R.id.pass3_image);
-
-
-//        DBOpenHelper dbOpenHelper=new DBOpenHelper(LoadActivity.this);
-//        final SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
-
-        service = new Intent(this,SocketService.class);
-        startService(service);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +83,10 @@ public class LoadActivity extends BaseActivity {
             }
         });
 
+        //登录
         mButton01.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {//登录
+            public void onClick(View view) {
 //                String phone = mEditText01.getText().toString().trim();
 //                String password = mEditText02.getText().toString().trim();
 //                UserBean userBean = new UserBean();
@@ -107,11 +124,13 @@ public class LoadActivity extends BaseActivity {
                 finish();
             }
         });
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
         if(SPUtils.contains(this,"phone")){
             mEditText01.setText(SPUtils.get(this,"phone"));
         }
@@ -126,6 +145,13 @@ public class LoadActivity extends BaseActivity {
                 finish();
             }
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(serviceConnection);
     }
 
     @Override

@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.z1229.activity.MainActivity;
 import com.example.z1229.activity.UserActivity;
 import com.example.z1229.base.MyLinkMovementMethod;
 import com.example.z1229.base.MySpannableTextView;
@@ -32,6 +31,8 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.z1229.activity.LoadActivity.SOCKET_BINDER;
 
 public class PlusItemAdapter extends RecyclerView.Adapter<PlusItemAdapter.VH> {
 
@@ -154,7 +155,7 @@ public class PlusItemAdapter extends RecyclerView.Adapter<PlusItemAdapter.VH> {
                 comment.setId(data.get(i).getId());
                 comment.setDateTime(new Date());
                 Message message=new Message("CommentBean",gson.toJson(comment));
-                MainActivity.SOCKET_BINDER.send(gson.toJson(message));
+                SOCKET_BINDER.send(gson.toJson(message));
             }
         });
     }

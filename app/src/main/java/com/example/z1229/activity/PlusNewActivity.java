@@ -36,6 +36,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.z1229.activity.LoadActivity.SOCKET_BINDER;
+
 public class PlusNewActivity extends BaseActivity {
 
     @BindView(R.id.btn_back)
@@ -134,7 +136,7 @@ public class PlusNewActivity extends BaseActivity {
         dynamic.setPicture(picture);
         dynamic.setDytime(new Date());
         Message message = new Message("Dynamic",gson.toJson(dynamic));
-        boolean b = MainActivity.SOCKET_BINDER.send(gson.toJson(message));
+        boolean b = SOCKET_BINDER.send(gson.toJson(message));
         sendDialog();
         if(!b){
             alertDialog.dismiss();

@@ -21,6 +21,7 @@ public class Dynamic {
 	private int zan_bool;
 	private String dytime;
 	private int state;
+	private int brocount;
 
 	public int getDyid() {
 		return dyid;
@@ -115,5 +116,13 @@ public class Dynamic {
 
 	public void setUrl(ArrayList<String> url) {
 		this.url = url;
+	}
+
+	public void setBrocount(int brocount) {
+		this.brocount = brocount;
+	}
+
+	public int getBrocount() {
+		return brocount;
 	}
 }

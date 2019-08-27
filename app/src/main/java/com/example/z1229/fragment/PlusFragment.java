@@ -16,24 +16,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.example.z1229.activity.MainActivity;
 import com.example.z1229.activity.PlusItemActivity;
 import com.example.z1229.activity.PlusNewActivity;
 import com.example.z1229.adapter.PlusAdapter;
 import com.example.z1229.bean.CommentBean;
 import com.example.z1229.bean.Dynamic;
 import com.example.z1229.bean.Message;
-import com.example.z1229.service.SocketService;
 import com.example.z1229.summerclient.R;
 import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedImageView;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static com.example.z1229.activity.LoadActivity.SOCKET_BINDER;
 
 public class PlusFragment extends Fragment{
     @BindView(R.id.plus_image)
@@ -50,8 +48,6 @@ public class PlusFragment extends Fragment{
     private Unbinder unbinder;
     private PlusAdapter plusAdapter;
     private Gson gson = new Gson();
-    private ArrayList<Dynamic> dyData = new ArrayList<>();
-    private SocketService.MyBinder myBinder;
     public static final String ACTION_SOCKET = "com.example.z1229.receiver.socketReceiver";
     private LocalBroadcastManager broadcastManager;
 
@@ -61,7 +57,7 @@ public class PlusFragment extends Fragment{
         unbinder = ButterKnife.bind(this, view);
         initTab();
         initRecycler();
-        this.myBinder=MainActivity.SOCKET_BINDER;
+
         //注册广播接收器
         broadcastManager = LocalBroadcastManager.getInstance(getActivity());
         IntentFilter intentFilter = new IntentFilter();
@@ -122,7 +118,7 @@ public class PlusFragment extends Fragment{
         dynamic.setReceiverPhone(15083498391L);
         dynamic.setState(type);
         Message message = new Message("Dynamic",gson.toJson(dynamic));
-        myBinder.send(gson.toJson(message));
+        SOCKET_BINDER.send(gson.toJson(message));
     }
 
     private void initTab() {
@@ -158,6 +154,11 @@ public class PlusFragment extends Fragment{
         plusAdapter.setOnItemClickListener(new PlusAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
+                CommentBean commentBean=new CommentBean();
+                commentBean.setDyId(plusAdapter.getDynamic(position).getDyid());
+                commentBean.setType("浏览");
+                Message message=new Message("CommentBean",gson.toJson(commentBean));
+                SOCKET_BINDER.send(gson.toJson(message));
                 Intent intent = new Intent(getActivity(),PlusItemActivity.class);
                 String dynamic = gson.toJson(plusAdapter.getDynamic(position));
                 intent.putExtra("dynamic",dynamic);
