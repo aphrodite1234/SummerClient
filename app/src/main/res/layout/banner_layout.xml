@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="160dp"
+android:layout_centerInParent="true"
+android:clipChildren="false">
+<!--在ViewPager的父布局里加入一条属性android:clipChildren="false"，意思是让子控件不局限于自己的内部，
+然后设置下ViewPager的margin值，距离左右一段距离，用来显示当前页左右两边的Page；
+//此处注意是BannerViewPager-->
+<com.example.z1229.view.BannerView.BannerViewPager
+    android:id="@+id/bannerViewPager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:clipChildren="false" />
+
+<FrameLayout
+    android:id="@+id/bannerBottomView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingTop="6dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="6dp"
+        android:text="广告的描述"
+        android:textColor="#fff"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/dot_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingTop="6dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="6dp"
+        tools:ignore="RtlHardcoded">
+    </LinearLayout>
+</FrameLayout>
+</FrameLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_centerInParent="true"
+    android:clipChildren="false">
+    &lt;!&ndash;在ViewPager的父布局里加入一条属性android:clipChildren="false"，意思是让子控件不局限于自己的内部，
+    然后设置下ViewPager的margin值，距离左右一段距离，用来显示当前页左右两边的Page；&ndash;&gt;
+    <com.example.z1229.view.BannerView.BannerView
+        android:id="@+id/bannerViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:clipChildren="false" />
+
+    <FrameLayout
+        android:id="@+id/bannerBottomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:paddingTop="6dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="6dp"
+            android:text="广告的描述"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/dot_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:paddingLeft="4dp"
+            android:paddingTop="6dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="6dp"
+            tools:ignore="RtlHardcoded">
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>-->

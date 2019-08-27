@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dip"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip">
+
+        <com.example.z1229.view.CircleImageView
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_app_round" />
+
+        <LinearLayout
+            android:id="@+id/line_search"
+            android:layout_width="260.0dip"
+            android:layout_height="28.0dip"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_corner"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5.0dip"
+                android:src="@mipmap/ic_top_search"
+                android:layout_marginStart="5.0dip" />
+
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="5dip"
+                android:text="搜索"
+                android:textColor="#d5d5d5"
+                tools:ignore="InvalidId" />
+        </LinearLayout>
+        <com.example.z1229.view.CircleImageView
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_top_xiaoxi"/>
+    </RelativeLayout>
+</LinearLayout>
