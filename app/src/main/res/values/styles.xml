@@ -9,6 +9,14 @@
         <item name="android:textColor">@color/text_color</item>
     </style>
 
+    <style name="Appbar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/icon_more</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
     <style name="textview_style">
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_width">41dp</item>
@@ -16,6 +24,15 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/text_blue</item>
         <item name="android:textSize">30dp</item>
+    </style>
+
+    <style name="Comment_Dialog" parent="@style/AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowSoftInputMode">stateAlwaysVisible</item><!--显示软件盘-->
+        <item name="android:backgroundDimAmount">0.5</item>
     </style>
 
 </resources>

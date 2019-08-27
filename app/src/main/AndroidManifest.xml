@@ -20,10 +20,11 @@
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
+        android:name="com.example.z1229.base.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_app_round"
+        android:roundIcon="@mipmap/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.z1229.activity.LoadActivity">
@@ -39,8 +40,6 @@
 
         <service android:name="com.example.z1229.service.SocketService" />
 
-        <receiver android:name="com.example.z1229.receiver.SocketReceiver" />
-
         <activity android:name="com.example.z1229.activity.ClockActivity" />
         <activity android:name="com.example.z1229.activity.ClockAddActivity" />
         <activity android:name="com.example.z1229.activity.BloodActivity" />
@@ -52,7 +51,25 @@
         <activity android:name="com.example.z1229.activity.SportHistoryActivity" />
         <activity android:name="com.example.z1229.activity.EatSelectActivity" />
         <activity android:name="com.example.z1229.activity.EatSearchActivity" />
-        <activity android:name="com.example.z1229.activity.EatCalActivity"></activity>
+        <activity android:name="com.example.z1229.activity.EatCalActivity" />
+        <activity android:name="com.example.z1229.activity.PlusNewActivity" />
+        <activity android:name="com.zzti.fengyongge.imagepicker.PhotoSelectorActivity" />
+        //选择图片
+        <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />
+        //预览图片
+        <!-- targetSDKVersion >= 24时才需要添加这个provider，provider的authorities属性的值为${applicationId}.fileprovider，请开发者根据自己的${applicationId}来设置这个值 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name="com.example.z1229.activity.PlusItemActivity" />
+        <activity android:name="com.example.z1229.activity.UserActivity"></activity>
     </application>
 
 </manifest>

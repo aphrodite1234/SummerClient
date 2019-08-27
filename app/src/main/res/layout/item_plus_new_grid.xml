@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:descendantFocusability="blocksDescendants">
+    <ImageView
+        android:padding="5dp"
+        android:id="@+id/plus_new_item_image"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:src="@drawable/ph_boluo"
+        android:scaleType="centerCrop"/>
+
+    <Button
+        android:clickable="false"
+        android:id="@+id/plus_new_item_btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_delete" />
+
+</RelativeLayout>

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.z1229.base.DBOpenHelper;
 import com.example.z1229.bean.Message;
+import com.example.z1229.service.SocketService;
 import com.example.z1229.summerclient.R;
 import com.example.z1229.utils.SPUtils;
 import com.google.gson.Gson;
@@ -50,8 +51,8 @@ public class LoadActivity extends BaseActivity {
 //        DBOpenHelper dbOpenHelper=new DBOpenHelper(LoadActivity.this);
 //        final SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
 
-//        service = new Intent(this,SocketService.class);
-//        startService(service);
+        service = new Intent(this,SocketService.class);
+        startService(service);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +86,7 @@ public class LoadActivity extends BaseActivity {
 //                    startService(service);
 //                }
                 startActivity(new Intent(LoadActivity.this,MainActivity.class));
+                finish();
             }
         });
 

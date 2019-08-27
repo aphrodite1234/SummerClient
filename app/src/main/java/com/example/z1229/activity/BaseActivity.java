@@ -1,15 +1,15 @@
 package com.example.z1229.activity;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 
-public abstract class BaseActivity extends Activity {
-    public static final String ACTION_SOCKET = "com.example.z1229.receiver.SocketReceiver";
+public abstract class BaseActivity extends AppCompatActivity {
+    public static final String ACTION_SOCKET = "com.example.z1229.receiver.socketReceiver";
     private LocalBroadcastManager localBroadcastManager;
 
     @Override

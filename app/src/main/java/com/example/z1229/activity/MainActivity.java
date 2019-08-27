@@ -1,11 +1,12 @@
 package com.example.z1229.activity;
 
+import android.content.ComponentName;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,13 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.example.z1229.base.DBOpenHelper;
 import com.example.z1229.base.Tab;
 import com.example.z1229.fragment.HomeFragment;
+import com.example.z1229.fragment.PlusFragment;
 import com.example.z1229.fragment.RecordFragment;
-import com.example.z1229.fragment.PluseFragment;
 import com.example.z1229.fragment.UserFragment;
-import com.example.z1229.receiver.SocketReceiver;
 import com.example.z1229.service.SocketService;
 import com.example.z1229.summerclient.R;
 
@@ -30,19 +29,17 @@ public class MainActivity extends FragmentActivity {
     private FragmentTabHost mTabHost;
     private LayoutInflater mInflater;
     private ArrayList<Tab> mTabs = new ArrayList<Tab>(4);
-    private LocalBroadcastManager localBroadcastManager;
-    private SocketReceiver socketReceiver;
+    public static SocketService.MyBinder SOCKET_BINDER;
+    private SocketServiceConnection socketServiceConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        socketReceiver = new SocketReceiver();
-        IntentFilter intentFilter = new IntentFilter("com.example.z1229.receiver.SocketReceiver");
-        localBroadcastManager = LocalBroadcastManager.getInstance(this);
-        localBroadcastManager.registerReceiver(socketReceiver,intentFilter);
-
+        //绑定socketservice,获取binder对象
+        Intent service = new Intent(this,SocketService.class);
+        socketServiceConnection = new SocketServiceConnection();
+        bindService(service,socketServiceConnection,BIND_AUTO_CREATE);
         initTab();
     }
 
@@ -51,7 +48,7 @@ public class MainActivity extends FragmentActivity {
         Tab Tab_home = new Tab(R.drawable.selector_home, R.string.home, HomeFragment.class);
         Tab Tab_user = new Tab(R.drawable.selector_user, R.string.user, UserFragment.class);
         Tab Tab_more = new Tab(R.drawable.selector_more, R.string.more, RecordFragment.class);
-        Tab Tab_plus = new Tab(R.drawable.selector_plus, R.string.plus, PluseFragment.class);
+        Tab Tab_plus = new Tab(R.drawable.selector_plus, R.string.plus, PlusFragment.class);
 
         //将这4个对象加到一个List中
         mTabs.add(Tab_home);
@@ -90,8 +87,20 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        localBroadcastManager.unregisterReceiver(socketReceiver);
         Intent intent = new Intent(this,SocketService.class);
         stopService(intent);
+        unbindService(socketServiceConnection);
+    }
+
+    public class SocketServiceConnection implements ServiceConnection {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            SOCKET_BINDER = (SocketService.MyBinder)service;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
     }
 }

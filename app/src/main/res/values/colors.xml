@@ -9,13 +9,14 @@
     <color name="translucent_white">#61FFFFFF</color>
     <color name="smssdk_line_light_gray">#d3d3d3</color>
     <color name="smssdk_white">#ffffff</color>
-    <color name="white">#ffffffff</color>
+    <color name="white">#fdfdfd</color>
     <color name="interval_color">#e7e5e5</color>
-    <color name="white_color">#ffffff</color>
+    <color name="no_color">#00ffffff</color>
     <color name="app_black_color">#616060</color>
     <color name="app_red_color">#d81e06</color>
     <color name="default_text_color">#bfbfbf</color>
     <color name="gray_font">#818181</color>
+    <color name="edit_gray">#7dc2c2c2</color>
     <color name="hint_color">#bfbfbf</color>
     <color name="font_value">#61615f</color>
     <color name="timestampline">#ffe5e1de</color>
@@ -30,5 +31,6 @@
     <color name="default_selected_text_color">#007de0</color>
     <color name="default_round_line_color">#dad7d4</color>
     <color name="icon_more">#70ff87</color>
-    <color name="background">#dffaf8</color>
+    <color name="gradient">#55fd70</color>
+    <color name="background">#e7fffd</color>
 </resources>

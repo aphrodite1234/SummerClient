@@ -2,6 +2,7 @@ package com.example.z1229.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -20,7 +21,8 @@ import java.net.Socket;
 public class SocketService extends Service {
 
     private Handler handler = new Handler(Looper.getMainLooper());
-    private static final String IP="10.0.2.2";
+//    private static final String IP="10.0.2.2";
+    private static final String IP="47.95.146.87";
     private static final int PORT=5678;
     private PrintWriter writer;
     private Socket socket;
@@ -31,13 +33,15 @@ public class SocketService extends Service {
     ReadThread readThread;
     Handler mHandler = new Handler();
 
-    public SocketService() {
-    }
-
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return new MyBinder();
+    }
+
+    public class MyBinder extends Binder{
+        public boolean send(String string){
+            return sendMsg(string);
+        }
     }
 
     @Override
@@ -49,11 +53,6 @@ public class SocketService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        boolean send;
-        if(intent.getStringExtra("message")!=null){
-            send = sendMsg(intent.getStringExtra("message"));
-        }
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -166,8 +165,8 @@ public class SocketService extends Service {
                     reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String line=null;
                     while(!socket.isInputShutdown()&&!socket.isClosed()&&(line=reader.readLine())!=null){
-                        System.out.println("+++++++++++++++++++++++++++++++++++++++"+line);
-                        Intent intent = new Intent("com.example.z1229.receiver.SocketReceiver");
+                        System.out.println(line);
+                        Intent intent = new Intent("com.example.z1229.receiver.socketReceiver");
                         intent.putExtra("text",line);
                         localBroadcastManager.sendBroadcast(intent);
                     }

@@ -2,14 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@mipmap/ph_bg4">
 
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:background="@mipmap/ic_app_foreground"
-        android:layout_width="120dp"
-        android:layout_height="120dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,20 +18,20 @@
         <EditText
             android:layout_marginBottom="10dp"
             android:inputType="phone"
-            android:background="@drawable/load_edit_shap"
+            android:background="@drawable/shap_load_edit"
             android:id="@+id/EditText01"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:hint="手机号" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
-                android:background="@drawable/load_edit_shap"
+                android:background="@drawable/shap_load_edit"
                 android:id="@+id/EditText02"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:inputType="textPassword"
                 android:hint="密码"/>
 
@@ -50,7 +45,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageButton

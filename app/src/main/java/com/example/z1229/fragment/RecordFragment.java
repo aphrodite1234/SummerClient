@@ -24,7 +24,6 @@ import com.example.z1229.base.LineMarkerView;
 import com.example.z1229.summerclient.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -44,7 +43,7 @@ import java.util.Calendar;
 
 public class RecordFragment extends Fragment implements View.OnClickListener {
 
-    private ImageButton clock, eat, sport, blood,eat_p,sport_p,blood_p;
+    private ImageButton clock, eat, sport, blood,eat_p,sport_p,blood_p,load;
     private RelativeLayout r_eat, r_sport, r_blood;
     private View view;
     private LineChart lineChart;
@@ -56,7 +55,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_more, container, false);
+        view = inflater.inflate(R.layout.fragment_record, container, false);
         dbOpenHelper = new DBOpenHelper(getActivity());
         b_line=dbOpenHelper.search_b(dbOpenHelper,1);
         barData_e = dbOpenHelper.search_e(dbOpenHelper,7);
@@ -104,6 +103,8 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(),SportHistoryActivity.class)
                         .putExtra("title","运动消耗柱形图"));
                 break;
+            case R.id.more_load:
+                break;
             default:
                 break;
         }
@@ -112,6 +113,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
     private void initview() {
         clock = (ImageButton) view.findViewById(R.id.more_clock);
         eat = (ImageButton) view.findViewById(R.id.btn_eat_plus);
+        load=(ImageButton)view.findViewById(R.id.more_load);
         blood = (ImageButton) view.findViewById(R.id.btn_blood_plus);
         sport = (ImageButton) view.findViewById(R.id.btn_sport_plus);
         r_blood = (RelativeLayout) view.findViewById(R.id.item_blood);
@@ -122,6 +124,7 @@ public class RecordFragment extends Fragment implements View.OnClickListener {
         blood_p=(ImageButton)view.findViewById(R.id.more_blood_past);
         eat_p=(ImageButton)view.findViewById(R.id.more_eat_past);
         sport_p=(ImageButton)view.findViewById(R.id.more_sport_past);
+        load.setOnClickListener(this);
         blood_p.setOnClickListener(this);
         sport_p.setOnClickListener(this);
         eat_p.setOnClickListener(this);

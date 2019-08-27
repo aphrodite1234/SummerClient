@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.example.z1229.base.MySpannableTextView
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:maxLines="6"
+            android:layout_toLeftOf="@id/plus_item_com_r"
+            android:id="@+id/plus_item_com_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:clickable="true"
+            android:id="@+id/plus_item_com_r"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/plus_item_com_zan"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_zan" />
+
+            <TextView
+                android:id="@+id/plus_item_com_zan_count"
+                android:textColor="@color/gray_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
