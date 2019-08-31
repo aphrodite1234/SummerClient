@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,8 +15,10 @@ import android.widget.Toast;
 
 import com.example.z1229.base.DBOpenHelper;
 import com.example.z1229.bean.Message;
+import com.example.z1229.bean.UserBean;
 import com.example.z1229.service.SocketService;
 import com.example.z1229.summerclient.R;
+import com.example.z1229.utils.ACache;
 import com.example.z1229.utils.SPUtils;
 import com.google.gson.Gson;
 
@@ -36,6 +39,7 @@ public class LoadActivity extends BaseActivity {
     boolean visible=false;
     private Intent service;
     private DBOpenHelper dbOpenHelper;
+    private ACache mACache;
     public static SocketService.MyBinder SOCKET_BINDER;
     private ServiceConnection serviceConnection=new ServiceConnection() {
         @Override
@@ -60,6 +64,7 @@ public class LoadActivity extends BaseActivity {
         //绑定socketservice,获取binder对象
         bindService(service,serviceConnection,BIND_AUTO_CREATE);
         initView();
+        CreateUserBean();
     }
 
     private void initView(){
@@ -87,8 +92,8 @@ public class LoadActivity extends BaseActivity {
         mButton01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String phone = mEditText01.getText().toString().trim();
-//                String password = mEditText02.getText().toString().trim();
+                String phone = mEditText01.getText().toString().trim();
+                String password = mEditText02.getText().toString().trim();
 //                UserBean userBean = new UserBean();
 //                if(TextUtils.isEmpty(phone)){
 //                    Toast.makeText(LoadActivity.this,"请输入手机号",Toast.LENGTH_SHORT).show();
@@ -102,6 +107,12 @@ public class LoadActivity extends BaseActivity {
 //                    service.putExtra("message",gson.toJson(message));
 //                    startService(service);
 //                }
+                if(!TextUtils.isEmpty(phone)&&!TextUtils.isEmpty(password)){
+                    UserBean userBean=(UserBean)mACache.getAsObject("local_userBean");
+                    userBean.setPhonenum(mEditText01.getText().toString().trim());
+                    userBean.setPassWord(mEditText02.getText().toString().trim());
+                    mACache.put("local_userBean",userBean);
+                }
                 startActivity(new Intent(LoadActivity.this,MainActivity.class));
                 finish();
             }
@@ -166,6 +177,18 @@ public class LoadActivity extends BaseActivity {
             finish();
         }else {
             Toast.makeText(LoadActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void CreateUserBean(){
+        mACache=ACache.get(this);
+        if(mACache.getAsObject("local_userBean")!=null){
+            UserBean userBean=(UserBean) mACache.getAsObject("local_userBean");
+            if(userBean.getPhonenum()!=null)
+                mEditText01.setText(String.valueOf(userBean.getPhonenum()));
+        }else{
+            UserBean userBean=new UserBean();
+            mACache.put("local_userBean",userBean);
         }
     }
 }

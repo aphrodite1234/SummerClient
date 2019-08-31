@@ -78,6 +78,7 @@
         </attr>
     </declare-styleable>
 
+
     <!-- *公共属性* //Rc-->
     <!--圆形-->
     <attr name="round_as_circle" format="boolean" />
@@ -88,6 +89,7 @@
     <attr name="round_corner_top_right" format="integer|dimension" />
     <attr name="round_corner_bottom_left" format="integer|dimension" />
     <attr name="round_corner_bottom_right" format="integer|dimension" />
+
 
     <!--描边颜色／半径-->
     <attr name="stroke_color" format="color|reference" />
@@ -134,6 +136,4 @@
         <attr name="stroke_width" />
         <attr name="clip_background" />
     </declare-styleable>
-
-
 </resources>

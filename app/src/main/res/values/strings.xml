@@ -37,4 +37,15 @@
     <string name="progress_text">正在发送...</string>
     <string name="send">发送</string>
     <string name="tangyouquan">糖友圈</string>
+    <string name="fragment_user_title">个人空间</string>
+    <string name="load_to_end">到达尽头…</string>
+    <string name="loading">正在加载请稍等</string>
+    <string-array name="user_sapce_tab">
+        <item>动态</item>
+        <item>关注</item>
+        <item>被关注</item>
+    </string-array>
+    <string name="personal_info">个人资料</string>
+    <string name="body_info">基本信息</string>
+    <string name="glycuresis_info">病历相关</string>
 </resources>

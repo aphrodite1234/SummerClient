@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
     android:layout_width="fill_parent"
@@ -54,4 +55,48 @@
             android:layout_centerVertical="true"
             android:src="@mipmap/ic_top_xiaoxi"/>
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@mipmap/fragment_user_background"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.mob.tools.gui.RoundRectLayout
+            android:id="@+id/fragment_user_head"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="13dp"
+            android:scaleType="centerCrop"
+            app:clip_background="false"
+            app:round_as_circle="true"
+            android:background="@mipmap/fragment_user_default_head">
+
+            <ImageView
+                android:id="@+id/fragment_user_gender"
+                android:layout_width="22.5dp"
+                android:layout_height="22.5dp"
+                android:src="@mipmap/ic_home_social_gender_man"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                tools:ignore="RtlHardcoded" />
+        </com.mob.tools.gui.RoundRectLayout>
+
+        <TextView
+            android:id="@+id/fragment_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/fragment_user_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="qwersafasdfsadfasfsaffasdfsadf"/>
+
+    </LinearLayout>
 </LinearLayout>

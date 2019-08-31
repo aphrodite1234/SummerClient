@@ -150,16 +150,18 @@
                 android:text="@string/date"/>
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.75">
+                android:id="@+id/item_home_social_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/item_home_social_comment_iv"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@mipmap/ic_home_social_huifu"/>
 
                 <TextView
+                    android:id="@+id/item_home_social_comment_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/huifu"
@@ -167,15 +169,23 @@
                     android:layout_marginLeft="5dp"
                     android:textColor="#666666"
                     android:layout_marginStart="5dp" />
-
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/item_home_social_like"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp">
                 <ImageView
+                    android:id="@+id/item_home_social_like_iv"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@mipmap/ic_home_social_dianzan"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp" />
+                    android:src="@mipmap/ic_home_social_dianzan" />
 
                 <TextView
+                    android:id="@+id/item_home_social_like_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"

@@ -1,11 +1,12 @@
 package com.example.z1229.bean;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-public class UserBean {
+public class UserBean implements Serializable{
 
 	private String type;
 	private Long phonenum;
@@ -83,10 +84,10 @@ public class UserBean {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        String sd = sdf.format(birthday);   
-		this.birthday = sd;
+	public void setBirthday(String birthday) {
+		/*SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String sd = sdf.format(birthday);  */
+		this.birthday = birthday;
 	}
 
 	public String getSignature() {

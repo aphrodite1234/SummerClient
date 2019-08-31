@@ -14,11 +14,27 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
 
 import java.io.File;
 
 public class PhotoUtils {
     private static final String TAG = "PhotoUtils";
+
+    public static void showCamera(Activity activity, File file, int requestCode) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            String authority = activity.getPackageName() + ".fileprovider"; //【清单文件中provider的authorities属性的值】
+            uri = FileProvider.getUriForFile(activity, authority, file);
+        } else {
+            uri = Uri.fromFile(file);
+        }
+        Log.i("bqt", "【uri】" + uri);//【content://{$authority}/files/bqt/temp】或【file:///storage/emulated/0/bqt/temp】
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        activity.startActivityForResult(intent, requestCode);
+    }
 
     /*
      * @param activity
@@ -104,12 +120,19 @@ public class PhotoUtils {
      * @param requestCode
      *         剪裁图片的请求码
      */
-    public static void cropImageUri(Activity activity, Uri orgUri, Uri desUri, int aspectX, int aspectY, int width, int height, int requestCode) {
+    //这个方法并没有将裁剪图片保存到指定路径，所以不用
+    public static void cropImageUri(Activity activity, File orgFile, File desFile, int aspectX, int aspectY, int width, int height, int requestCode) {
         Intent intent = new Intent("com.android.camera.action.CROP");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        Uri orgUri,desUri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {//手机系统>=android7(SDK_INT为手机版本,N为Nougat版本即7)
+            String authority = activity.getPackageName() + ".fileprovider"; //【清单文件中provider的authorities属性的值】
+            orgUri = FileProvider.getUriForFile(activity, authority, orgFile);
+        }else {
+            orgUri=Uri.fromFile(orgFile);
         }
+        desUri=Uri.fromFile(desFile);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         intent.setDataAndType(orgUri, "image/*");
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", aspectX);

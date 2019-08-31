@@ -76,6 +76,10 @@ public class MainActivity extends FragmentActivity {
         return view;
     }
 
+    private void updateLocalUserBean(){
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
